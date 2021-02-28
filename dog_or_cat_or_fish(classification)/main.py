@@ -1,4 +1,5 @@
-from sklearn.naive_bayes import MultinomialNB
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.svm import LinearSVC
 import numpy
 
 # attributes ['has_legs',long nose hairs, is_long]
@@ -17,8 +18,7 @@ data_marking = [1, 1, -1, -1, 2, 2]
 tests = numpy.array([[1, 1, 0], [1, 0, 0], [0, 0, 1]]).reshape(3, 3)
 tests_marking = [-1, 1, 2]
 
-# algortimo multinomia Bayesiano
-model = MultinomialNB()
+model = OneVsRestClassifier(LinearSVC(random_state=0))
 model.fit(data, data_marking)
 
 result = model.predict(tests)
